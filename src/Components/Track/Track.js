@@ -22,7 +22,7 @@ export class Track extends React.Component {
           </p>
         </div>
         {/* <button className="Track-action">+ or -</button> */}
-        {this.renderAction()};
+        {this.renderAction()}
       </div>
     );
   }
