@@ -35,10 +35,11 @@ class App extends React.Component {
           artist: "Example Playlist Track Artist 4",
           album: "Example Playlist Track Album 4",
           id: 4,
-        },
+        }
       ],
     };
     this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
   }
 
   addTrack(track) {
@@ -46,8 +47,11 @@ class App extends React.Component {
     const newTrack = this.state.playlistTracks.concat(track);
 
     foundTrack ? console.log("Track already exists") : this.setState({ playlistTracks: newTrack });
+  }
 
-
+  removeTrack(track) {
+    const isPresent = this.state.playlistTracks.filter((playlistTrack) => playlistTrack.id !== track.id);
+    this.setState({ playlistTracks: isPresent });
   }
 
   render() {
@@ -60,14 +64,15 @@ class App extends React.Component {
 
           <div className="App-playlist">
             {/* Add a SearchResults component */}
-            <SearchResults 
-            searchResults={this.state.searchResults} 
-            onAdd={this.addTrack} />
+            <SearchResults
+            onAdd={this.addTrack}
+            searchResults={this.state.searchResults} />
 
             {/* Add a Playlist component */}
             <Playlist 
             playlistName={this.state.playlistName} 
-            playlistTracks={this.state.playlistTracks} />
+            playlistTracks={this.state.playlistTracks}
+            onRemove={this.removeTrack}/>
 
           </div>
         </div>
