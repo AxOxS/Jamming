@@ -44,6 +44,7 @@ class App extends React.Component {
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
     this.search = this.search.bind(this);
+    Spotify.getAccessToken();
   }
 
   addTrack(track) {
@@ -73,7 +74,7 @@ class App extends React.Component {
     Spotify.search(term).then((result) => {
       this.setState({ searchResults: result })
     })
-    //console.log(term);
+    console.log(term);
   }
 
   render() {
@@ -84,7 +85,7 @@ class App extends React.Component {
           {/* Add a SearchBar component*/}
           <SearchBar
           onSearch={this.search}
-          onClick={this.search}
+          // onClick={this.search}
           />
 
           <div className="App-playlist">
